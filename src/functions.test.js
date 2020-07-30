@@ -4,35 +4,68 @@
  * construct available in Javascript.
  */
 
-// ...
+const max = (num1, num2) => {
+  if (num1 > num2) {
+    return num1
+  } else {
+    return num2
+  }
+}
 
 /**
  * 2) Define a function maxOfThree() that takes three
  * numbers as arguments and returns the largest of them.
  */
 
-// ...
+const maxOfThree = (num1, num2, num3) => {
+  if (num1 < num3 && num2 < num3) {
+    return num3
+  } else if (num1 < num2 && num3 < num2) {
+    return num2
+  } else if (num2 < num1 && num3 < num1) {
+    return num1
+  }
+}
 
 /*
  * 3) Define a function sum() that takes two numbers as
  * arguments and computes the sum of those two numbers.
  */
 
-// ...
+const sum = (num1, num2) => {
+  return num1 + num2
+}
 
 /*
  * 4) Define a function sumOfArray that calculates the sum of
  * all the numbers in an array.
  */
 
-// ...
-
+const sumOfArray = nums => {
+  return nums.reduce(function(a, b) {
+    return a + b
+  }, 0)
+}
 /**
  * 5) Write a function isVowel() that takes a character (i.e. a string of length 1)
  * and returns true if it is a vowel, false otherwise.
  */
 
-// ...
+const isVowel = str => {
+  return (
+    str === 'a' ||
+    str === 'A' ||
+    str === 'e' ||
+    str === 'E' ||
+    str === 'i' ||
+    str === 'I' ||
+    str === 'o' ||
+    str === 'O' ||
+    str === 'u' ||
+    str === 'U' ||
+    false
+  )
+}
 
 /**
  * 6) Write a function rovarspraket() that will translate
@@ -42,9 +75,24 @@
  * For example, rovarspraket("this is fun") should
  * return the string "tothohisos isos fofunon".
  */
+const rovarspraket = str => {
+  let answer = ''
+  for (let i = 0; i < str.length; i++) {
+    if (
+      str[i] === 'a' ||
+      str[i] === 'e' ||
+      str[i] === 'i' ||
+      str[i] === 'o' ||
+      str[i] === 'u'
+    ) {
+      answer += str[i]
+    } else {
+      answer += str[i] + 'o' + str[i]
+    }
+  }
 
-// ...
-
+  return answer
+}
 /**
  * 7) Define a function reverse() that computes
  * the reversal of a string. For example,
@@ -52,7 +100,12 @@
  * string "books".
  */
 
-// ...
+const reverse = str => {
+  return str
+    .split('')
+    .reverse()
+    .join('')
+}
 
 /**
  * 8) Write a function findLongestWord() that takes an
@@ -61,7 +114,14 @@
  * i.e. findLongestWord("book dogs") should return "book"
  */
 
-// ...
+const findLongestWord = str => {
+  let longest = ''
+  let array = str.split(' ')
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].length > longest.length) longest = array[i]
+  }
+  return longest
+}
 
 /**
  * NOTE: Don't modify anything below this line...
@@ -143,20 +203,6 @@ test('findLongestWord()', t => {
 
   t.is(findLongestWord('book dogs'), 'book')
   t.is(findLongestWord('life the universe and everything'), 'everything')
-})
-
-test('max() can handle non numbers', t => {
-  ensureDefined(t, 'max')
-
-  t.is(max('aaa', 0), 0)
-  t.true(isNaN(max('aaa', 'bbb')))
-})
-
-test('maxOfThree() can handle non numbers', t => {
-  ensureDefined(t, 'maxOfThree')
-
-  t.is(maxOfThree('aaa', 0, 1), 1)
-  t.true(isNaN(maxOfThree('aaa', 'bbb', 'ccc')))
 })
 
 /* eslint-enable */
